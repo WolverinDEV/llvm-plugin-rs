@@ -19,20 +19,15 @@ rustdoc-args = ["--cfg", "docsrs"]
 default = ["macros", "target-all"]
 macros = ["llvm-plugin-macros"]
 
-# On Windows, llvm plugins require linking with either opt.lib,
-# or lld.lib.
-win-link-opt = []
-win-link-lld = []
-
-llvm10-0 = ["inkwell/llvm10-0-no-llvm-linking"]
-llvm11-0 = ["inkwell/llvm11-0-no-llvm-linking"]
-llvm12-0 = ["inkwell/llvm12-0-no-llvm-linking"]
-llvm13-0 = ["inkwell/llvm13-0-no-llvm-linking"]
-llvm14-0 = ["inkwell/llvm14-0-no-llvm-linking"]
-llvm15-0 = ["inkwell/llvm15-0-no-llvm-linking"]
-llvm16-0 = ["inkwell/llvm16-0-no-llvm-linking"]
-llvm17-0 = ["inkwell/llvm17-0-no-llvm-linking"]
-llvm18-0 = ["inkwell/llvm18-0-no-llvm-linking"]
+llvm10-0 = ["inkwell/llvm10-0"]
+llvm11-0 = ["inkwell/llvm11-0"]
+llvm12-0 = ["inkwell/llvm12-0"]
+llvm13-0 = ["inkwell/llvm13-0"]
+llvm14-0 = ["inkwell/llvm14-0"]
+llvm15-0 = ["inkwell/llvm15-0"]
+llvm16-0 = ["inkwell/llvm16-0"]
+llvm17-0 = ["inkwell/llvm17-0"]
+llvm18-0 = ["inkwell/llvm18-0"]
 
 target-x86 = ["inkwell/target-x86"]
 target-arm = ["inkwell/target-arm"]
@@ -53,7 +48,7 @@ target-riscv = ["inkwell/target-riscv"]
 target-all = ["inkwell/target-all"]
 
 [dependencies]
-inkwell = "0.5"
+inkwell = { version = "0.5", default-features = false }
 inkwell_internals = "0.10.0"
 llvm-plugin-macros = { path = "../llvm-plugin-macros", version = "0.2", optional = true }
 

@@ -34,26 +34,6 @@ fn main() {
     build.warnings(false);
     build.compile("llvm-plugin-cpp");
 
-    #[cfg(any(target_os = "linux", target_os = "macos"))]
-    {
-        let libdir = llvm_sys::llvm_config("--libdir");
-        println!("cargo:rustc-link-search=native={}", libdir.trim());
-        println!("cargo:rustc-link-lib=dylib=LLVM");
-    }
-
-    #[cfg(target_os = "windows")]
-    {
-        let libdir = llvm_sys::llvm_config("--libdir");
-        println!("cargo:rustc-link-search=native={}", libdir.trim());
-        println!("cargo:rustc-link-lib=dylib=LLVM-C");
-
-        #[cfg(feature = "win-link-opt")]
-        println!("cargo:rustc-link-lib=dylib=opt");
-
-        #[cfg(feature = "win-link-lld")]
-        println!("cargo:rustc-link-lib=dylib=lld");
-    }
-
     println!("cargo:rerun-if-changed=cpp");
 }
 
